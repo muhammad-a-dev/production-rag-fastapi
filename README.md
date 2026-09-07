@@ -4,6 +4,8 @@ A focused Retrieval-Augmented Generation (RAG) service that lets you ingest PDF/
 
 This repository is a **portfolio / learning capstone**, not a turnkey production platform. It demonstrates clean FastAPI layering, LangChain retrieval, streaming responses, configuration hygiene, tests, and CI.
 
+See [CHANGELOG.md](CHANGELOG.md) for released changes.
+
 ## Problem
 
 Building a useful Q&A experience over private documents usually requires:
@@ -21,7 +23,7 @@ Many demos stop at a notebook. This project packages those steps behind a small 
 - **Ingest** PDF or TXT files through `POST /api/ingest`
 - **Persist** chunk embeddings in local Chroma
 - **Query** with `POST /api/query`, retrieving top relevant chunks and streaming the LLM response
-- Keep lightweight **in-memory session history** so follow-up questions can reference prior turns
+- Keep lightweight **in-memory session history** so follow-up questions can reference prior turns (lost on restart; not multi-process safe)
 
 ## Features
 
@@ -163,6 +165,7 @@ The image runs `uvicorn api.main:app` on port `8000` as a non-root user and heal
 ├── .dockerignore
 ├── pyproject.toml
 ├── .env.example
+├── CHANGELOG.md
 ├── LICENSE
 ├── CONTRIBUTING.md
 └── SECURITY.md
